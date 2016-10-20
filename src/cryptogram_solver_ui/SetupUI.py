@@ -7,9 +7,11 @@ from cryptogram_solver_ui import uiElements
 
 class UserInterfaceSetup(object):
 
-    def uiSetup(self):
+    def uiSetup(self, rows=5, columns=40):
 
-        self.resize(800, 600)
+        self._rows = rows
+        self._columns = columns
+        self.resize((self._columns) * 20, 600)
         menuBar = self.menuBar()
         toolBar = QToolBar(self)
         self.addToolBar(toolBar)
@@ -18,9 +20,13 @@ class UserInterfaceSetup(object):
         self.setCentralWidget(self.panel)
         self.setupBars(menuBar, toolBar)
         self.panel.resize(self.width(), self.height() - menuBar.height() - toolBar.height())
-        self._keys = []
+        print("self.panel.width() = ", self.panel.width())
+        print("self.panel.height() = ", self.panel.height())
+        self._letterWidth = 15
+        self._letterHeight = 3 * self._letterWidth
         self._rows = 5
         self._columns = 40
+        print("Puzzle area height = ", self._rows * self._letterHeight)
         self._currentLetterBox = -1
         self._activeUnits = []
         self.setupPlayPanel(self.panel)
@@ -258,24 +264,25 @@ class UserInterfaceSetup(object):
 
         topLine = QFrame(panel)
         topLine.setFrameStyle((QFrame.HLine | QFrame.Sunken))
-        topLine.resize(800,3)
+        topLine.resize(panel.width(), 3)
         topLine.move(0, 40)
 
         self.updateGameInfo(self.panel)
 
     def createPuzzleArea(self, panel):
 
+        print("createPuzzleArea panel.width() = ", panel.width())
         xbase = 20
         ybase = 50
-        letterWidth = 15
-        letterHeight = 3 * letterWidth
         self.letterUnits = []
         for row in range(self._rows):
             for column in range(self._columns):
-                xpos = xbase + column * (letterWidth + 4)
-                ypos = ybase + row * (letterHeight + letterHeight/2)
+                xpos = xbase + column * (self._letterWidth + 4)
+                ypos = ybase + row * (self._letterHeight + self._letterHeight/2)
                 letterUnit = uiElements.LetterUnit(' ', ' ', xpos, ypos,
-                                                   QSize(letterWidth, letterHeight), panel)
+                                                   QSize(self._letterWidth,
+                                                         self._letterHeight),
+                                                   panel)
                 letterUnit.clicked.connect(self.letterUnitClicked)
                 self.letterUnits.append(letterUnit)
 
