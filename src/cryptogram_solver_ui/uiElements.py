@@ -361,9 +361,10 @@ keyLookup = {32:'Space', 33: 'Exclamation', 34: 'Quotation', 35: 'Pound',
              36:'Dollar', 37:'Percent', 38:'Ampersand', 39:'Apostrophe',
              40:'OpenParen', 41:'CloseParen', 42:'Asterisk', 43:'Plus',
              44:'Comma', 45:'Hyphen', 46:'Period', 47:'Slash', 58:'Colon',
-             59:'Semicolon', 61:'Less', 62:'Greater', 63:'Question',
-             64:'At', 91:'OpenBracket', 92:'Backslash', 93:'CloseBracket',
-             123:'OpenBrace', 124:'Pipe', 125:'CloseBrace', }
+             59:'Semicolon', 60:'Less', 61:'Equal', 62:'Greater',
+             63:'Question', 64:'At', 91:'OpenBracket', 92:'Backslash',
+             93:'CloseBracket', 123:'OpenBrace', 124:'Pipe', 125:'CloseBrace',
+             }
 
 class CodeTextEdit(QTextEdit):
 
